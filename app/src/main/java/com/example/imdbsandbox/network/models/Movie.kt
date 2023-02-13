@@ -18,5 +18,5 @@ data class Movie(
     val keywords: String,
     val name: String,
     val trailer: Trailer,
-    val url: String
+    @SerializedName("url") val imgSrcUrl: String
 ):java.io.Serializable

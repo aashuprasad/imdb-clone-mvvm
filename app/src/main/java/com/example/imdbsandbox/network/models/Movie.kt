@@ -14,9 +14,9 @@ data class Movie(
     val director: List<Director>,
     val duration: String,
     val genre: List<String>,
-    val image: String,
+    @SerializedName("image") val imgSrcUrl: String,
     val keywords: String,
     val name: String,
     val trailer: Trailer,
-    @SerializedName("url") val imgSrcUrl: String
+    val url: String
 ):java.io.Serializable

@@ -3,19 +3,25 @@ package com.example.imdbsandbox.overview
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.imdbsandbox.network.MovieAPI
 import com.example.imdbsandbox.network.models.Movie
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class OverviewViewModel: ViewModel() {
     // The internal MutableLiveData String that stores the status of the most recent request
-    private val _response = MutableLiveData<String>()
+    private val _status = MutableLiveData<String>()
 
     // The external immutable LiveData for the request status String
-    val response: LiveData<String>
-        get() = _response
+    val status: LiveData<String>
+        get() = _status
+
+
+    private val _movie = MutableLiveData<Movie>()
+    val movie:LiveData<Movie> get()=_movie
 
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
@@ -28,16 +34,18 @@ class OverviewViewModel: ViewModel() {
      * Sets the value of the status LiveData to the Mars API status.
      */
     private fun getMovieDetails() {
-        MovieAPI.retrofitService.getMovies().enqueue(object : Callback<List<Movie>>{
-            override fun onResponse(call: Call<List<Movie>>, response: Response<List<Movie>>) {
-                _response.value = "success: ${response.body()?.size} Movies retrieved"
-            }
+        viewModelScope.launch {
+            try{
+                var listResult = MovieAPI.retrofitService.getMovies()
+                _status.value = "Success: ${listResult.body()!!.size} Movies retrieved"
+                if(listResult.body()!!.isNotEmpty()){
+                    _movie.value = listResult.body()?.first()
+                }
+            }catch (e:Exception){
+                _status.value = "Failure: ${e.message}"
 
-            override fun onFailure(call: Call<List<Movie>>, t: Throwable) {
-                _response.value = "Failure "+t.message
             }
-
-        })
-        _response.value = "Set the Mars API Response here!"
+        }
     }
+
 }

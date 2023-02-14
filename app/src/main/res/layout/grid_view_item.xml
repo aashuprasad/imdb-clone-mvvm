@@ -2,14 +2,21 @@
 
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+        <data>
+                <variable
+                    name="viewModel"
+                    type="com.example.imdbsandbox.overview.OverviewViewModel" />
+        </data>
         <ImageView
-            android:id="@+id/mars_image"
+            android:id="@+id/movie_image"
             android:layout_width="match_parent"
             android:layout_height="170dp"
             android:scaleType="centerCrop"
             android:adjustViewBounds="true"
             android:padding="2dp"
+            app:imageUrl="@{viewModel.movie.imgSrcUrl}"
             tools:src="@tools:sample/backgrounds/scenic"/>
 
 </layout>

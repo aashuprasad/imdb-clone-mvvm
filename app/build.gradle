@@ -67,4 +67,7 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:4.14.2"
 
+    //recycler view
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+
 }

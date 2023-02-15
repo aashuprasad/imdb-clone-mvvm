@@ -1,7 +1,10 @@
 package com.example.imdbsandbox.network.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Movie(
     @SerializedName("@context")val context: String,
     @SerializedName("@type")val type: String,
@@ -19,4 +22,4 @@ data class Movie(
     val name: String,
     val trailer: Trailer,
     val url: String
-):java.io.Serializable
+):Parcelable

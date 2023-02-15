@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item
-            android:id="@+id/show_all_menu"
-            android:title="SHOW ALL" />
+            android:id="@+id/show_action"
+            android:title="Action" />
         <item
-            android:id="@+id/show_pg_menu"
-            android:title="SHOW PG" />
+            android:id="@+id/show_drama"
+            android:title="Drama" />
         <item
-            android:id="@+id/show_buy_menu"
-            android:title="SHOW R" />
-        <item
-            android:id="@+id/show_pg13_menu"
-            android:title="SHOW PG-13" />
-        <item
-            android:id="@+id/show_g_menu"
-            android:title="SHOW G" />
+            android:id="@+id/show_thriller"
+            android:title="Thriller" />
+
 
 
 </menu>

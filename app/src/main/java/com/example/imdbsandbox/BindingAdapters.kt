@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -32,22 +33,52 @@ fun bindImage(imgView:ImageView, imgUrl:String?){
 }
 
 @BindingAdapter("listActionData")
-fun bindRecyclerView(recyclerView: RecyclerView, data:List<Movie>?){
-    val genres:MutableList<String> = mutableListOf()
+fun bindActionRecyclerView(recyclerView: RecyclerView, data:List<Movie>?){
+    /*val genres:MutableList<String> = mutableListOf()
     data?.forEach {
         genres.addAll(it.genre)
     }
     val genreList = genres.distinct()
-    //data.groupBy { it.genre }
-    val actionMovies = data?.filter { it.genre.contains("Thriller") }
-
-
+    //data.groupBy { it.genre }*/
+    //Log.d("GENRES", genreList.toString())
+    val actionMovies = data?.filter { it.genre.contains("Action") }
     val adapter: PhotoGridAdapter? = recyclerView.adapter as PhotoGridAdapter?
     adapter?.submitList(actionMovies)
-
-
-
 }
+
+
+
+@BindingAdapter("listAnimationData")
+fun bindAnimationRecyclerView(recyclerView: RecyclerView, data: List<Movie>?){
+    val animationMovies = data?.filter {it.genre.contains("Animation")}
+    val adapter:PhotoGridAdapter? = recyclerView.adapter as PhotoGridAdapter?
+    adapter?.submitList(animationMovies)
+}
+
+@BindingAdapter("listComedyData")
+fun bindComedyRecyclerView(recyclerView: RecyclerView, data: List<Movie>?){
+    val comedyMovies = data?.filter {it.genre.contains("Comedy")}
+    val adapter:PhotoGridAdapter? = recyclerView.adapter as PhotoGridAdapter?
+    adapter?.submitList(comedyMovies)
+}
+
+@BindingAdapter("movieRating")
+fun bindMovieRating(textView: TextView, movie: Movie){
+    val rating = movie.aggregateRating.ratingValue.toString()
+    textView.text = rating
+}
+
+@BindingAdapter("movieActors")
+fun bindActors(textView: TextView, movie: Movie){
+    var namesOfActor = ""
+    val namesoofActor = movie.actor.map { it.name }
+    namesOfActor = namesoofActor.joinToString(",")
+    textView.text = namesOfActor
+    /*movie.actor.forEach {
+        namesOfActor = it.name.toCharArray().joinToString(",")
+    }*/
+}
+
 
 @BindingAdapter("movieApiStatus")
 fun bindStatus(statusImageView: ImageView, status:MovieApiStatus?){

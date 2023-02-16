@@ -1,11 +1,11 @@
 package com.example.imdbsandbox.overview
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.imdbsandbox.network.MovieAPI
-import com.example.imdbsandbox.network.MovieAPIFilter
 import com.example.imdbsandbox.network.models.Movie
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -26,28 +26,45 @@ class OverviewViewModel: ViewModel() {
     private val _movies = MutableLiveData<List<Movie>>()
     val movie:LiveData<List<Movie>> get()=_movies
 
+    val bmovie:LiveData<List<Movie>> get()=_movies
+
+    val cmovie:LiveData<List<Movie>> get()=_movies
+
+    private val _navigateToSelectedMovie = MutableLiveData<Movie>()
+    val navigateToSelectedMovie: LiveData<Movie>
+        get() = _navigateToSelectedMovie
+
 
     /**
      * Call getMarsRealEstateProperties() on init so we can display status immediately.
      */
     init {
-        getMovieDetails(MovieAPIFilter.SHOW_ACTION)
+        getMovieDetails()
     }
 
-    private fun getMovieDetails(filter: MovieAPIFilter) {
+    private fun getMovieDetails() {
         viewModelScope.launch {
             try{
                 _status.value = MovieApiStatus.LOADING
                 var listResult = MovieAPI.retrofitService.getMovies()
                 _status.value = MovieApiStatus.DONE
                 if(listResult.body()!!.isNotEmpty()){
-                    _movies.value = listResult.body()
                 }
+                _movies.value = listResult.body()
+                println(_movies.value?.size)
             }catch (e:Exception){
                 _status.value = MovieApiStatus.ERROR
                 _movies.value = ArrayList()
 
             }
         }
+    }
+
+    fun displayMovieDetails(movie: Movie) {
+        _navigateToSelectedMovie.value = movie
+    }
+
+    fun displayMovieDetailsComplete() {
+        _navigateToSelectedMovie.value = null
     }
 }

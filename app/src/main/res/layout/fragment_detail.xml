@@ -2,52 +2,224 @@
 
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.imdbsandbox.detail.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MovieDetailsActivity">
+
+        <ImageView
+            android:id="@+id/tv_movieImage"
+            android:layout_width="0dp"
+            android:layout_height="266dp"
+            android:background="#f5c518"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{viewModel.selectedMovie.imgSrcUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/tv_movieName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
+            android:shadowColor="#000000"
+            android:shadowDx="1.5"
+            android:shadowDy="1.3"
+            android:shadowRadius="1.6"
+            tools:text="The Lord of the Rings: The Fellowship of the Ring"
+            android:text="@{viewModel.selectedMovie.component14()}"
+            android:textAlignment="textStart"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_movieImage"
+            app:layout_constraintEnd_toStartOf="@+id/tv_movieDuration"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
         <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".DetailFragment">
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movieImage">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp">
-
-                <ImageView
-                    android:id="@+id/main_photo_image"
-                    android:layout_width="0dp"
-                    android:layout_height="266dp"
-                    android:scaleType="centerCrop"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:src="@tools:sample/backgrounds/scenic" />
+                android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/pg_type_text"
+                    android:id="@+id/tv_movieTopic"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="16dp"
+                    tools:text="A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron."
+                    android:text="@{viewModel.selectedMovie.component8()}"
+                    android:textAlignment="textStart"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:textColor="@color/white"
-                    android:layout_marginEnd="10dp"
-                    android:textSize="39sp"
-                    app:layout_constraintTop_toTopOf="@+id/main_photo_image"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    tools:text="PG Rating" />
+                    android:text="Director:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_movieTopic" />
 
                 <TextView
-                    android:id="@+id/description_text"
+                    android:id="@+id/tv_movieDirector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    tools:text="Peter Jackson"
+                    android:text="@{viewModel.selectedMovie.director.get(0).name}"
+                    app:layout_constraintBaseline_toBaselineOf="@+id/textView9"
+                    app:layout_constraintStart_toEndOf="@+id/textView9" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Stars:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+                <TextView
+                    android:id="@+id/tv_movieStars"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textColor="#de000000"
-                    android:textSize="20sp"
+                    tools:text="Elijah Wood - Frodo..."
+                    app:movieActors="@{viewModel.selectedMovie}"
+                    app:layout_constraintStart_toStartOf="@+id/tv_movieDirector"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_movieDirector" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Genres:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/main_photo_image"
-                    tools:text="Description" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_movieStars" />
+
+                <TextView
+                    android:id="@+id/tv_movieGenres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="Adventure..."
+                    android:text="@{viewModel.selectedMovie.component11().toString()}"
+                    app:layout_constraintStart_toStartOf="@+id/tv_movieStars"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_movieStars" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="PG:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_movieGenres" />
+
+                <TextView
+                    android:id="@+id/tv_moviePG"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@{viewModel.selectedMovie.component5()}"
+                    tools:text="PG"
+                    app:layout_constraintStart_toStartOf="@+id/tv_movieGenres"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_movieGenres" />
+
+                <TextView
+                    android:id="@+id/textView18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Studios:"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_moviePG" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-    </layout>
+
+        <TextView
+            android:id="@+id/tv_movieYear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            tools:text="2001"
+            android:text="@{viewModel.selectedMovie.component7()}"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_movieScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            tools:text="8.8/10"
+            app:movieRating="@{viewModel.selectedMovie}"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movieYear" />
+
+        <TextView
+            android:id="@+id/tv_movieDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="12dp"
+            tools:text="2h 58min"
+            android:text="@{viewModel.selectedMovie.component10()}"
+
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_movieScore" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+

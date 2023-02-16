@@ -15,5 +15,10 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.imdbsandbox.detail.DetailFragment"
-        android:label="DetailFragment" />
+        android:label="DetailFragment" >
+        <argument
+            android:name="selectedMovie"
+            app:argType="com.example.android.marsrealestate.network.MarsProperty"
+            />
+    </fragment>
 </navigation>

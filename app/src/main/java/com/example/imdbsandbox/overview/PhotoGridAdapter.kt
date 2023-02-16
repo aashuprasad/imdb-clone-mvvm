@@ -8,12 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.imdbsandbox.databinding.GridViewItemBinding
 import com.example.imdbsandbox.network.models.Movie
 
-open class PhotoGridAdapter : ListAdapter<Movie, PhotoGridAdapter.MovieViewHolder>(DiffCallback){
+open class PhotoGridAdapter(val onClickListener:OnClickListener) : ListAdapter<Movie, PhotoGridAdapter.MovieViewHolder>(DiffCallback){
     class MovieViewHolder(private var binding:GridViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie){
             binding.movie = movie
-
             binding.executePendingBindings()
         }
     }
@@ -24,7 +23,11 @@ open class PhotoGridAdapter : ListAdapter<Movie, PhotoGridAdapter.MovieViewHolde
 
     override fun onBindViewHolder(holder: PhotoGridAdapter.MovieViewHolder, position: Int) {
         val movie = getItem(position)
-        
+        holder.itemView.setOnClickListener {
+
+            onClickListener.onClick(movie)
+        }
+
         holder.bind(movie)
     }
 
@@ -36,5 +39,9 @@ open class PhotoGridAdapter : ListAdapter<Movie, PhotoGridAdapter.MovieViewHolde
         override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem.imgSrcUrl == newItem.imgSrcUrl
         }
+    }
+
+    class OnClickListener(val clickListener: (movie:Movie)->Unit){
+        fun onClick(movie: Movie) = clickListener(movie)
     }
 }

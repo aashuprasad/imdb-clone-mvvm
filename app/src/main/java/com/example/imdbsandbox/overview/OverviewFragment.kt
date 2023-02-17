@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.imdbsandbox.R
 import com.example.imdbsandbox.databinding.FragmentOverviewBinding
-import com.example.imdbsandbox.databinding.GridViewItemBinding
 
 class OverviewFragment : Fragment() {
 
@@ -33,12 +31,15 @@ class OverviewFragment : Fragment() {
         // Giving the binding access to the OverviewViewModel
         binding.viewModel = viewModel
 
+        //Sets adapter of photosGridAction RecyclerView with clickHandler lambda that
+        //tells the viewModel when our property is clicked
         binding.photoGridAction.adapter = PhotoGridAdapter(
             PhotoGridAdapter.OnClickListener{
-                findNavController().navigate(R.id.detailFragment)
                 viewModel.displayMovieDetails(it)
-            }
-        )
+            })
+
+
+
         binding.photoGridAnimation.adapter = PhotoGridAdapter(
             PhotoGridAdapter.OnClickListener{
                 viewModel.displayMovieDetails(it)
@@ -50,14 +51,17 @@ class OverviewFragment : Fragment() {
             }
         )
 
+        //Observe the navigateToSelectedMovie LiveData and Navigate when it isn't null
+        //After navigating, call displayMovieDetailsComplete()
+        //for another navigation event
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
             if(null != it){
-                this.findNavController().navigate(OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(it))
+                //find NavController from the Fragment
+                this.findNavController().navigate(OverviewFragmentDirections.actionShowDetails(it))
+                //Tell the ViewModel we've made the navigate call to prevent multiple navigation
                 viewModel.displayMovieDetailsComplete()
             }
         })
-
-
 
         return binding.root
     }

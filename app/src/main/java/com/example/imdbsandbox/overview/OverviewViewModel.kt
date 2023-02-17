@@ -30,8 +30,8 @@ class OverviewViewModel: ViewModel() {
 
     val cmovie:LiveData<List<Movie>> get()=_movies
 
-    private val _navigateToSelectedMovie = MutableLiveData<Movie?>()
-    val navigateToSelectedMovie: MutableLiveData<Movie?>
+    private val _navigateToSelectedMovie = MutableLiveData<Movie>()
+    val navigateToSelectedMovie: MutableLiveData<Movie>
         get() = _navigateToSelectedMovie
 
 

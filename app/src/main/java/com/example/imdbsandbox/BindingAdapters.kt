@@ -1,8 +1,5 @@
 package com.example.imdbsandbox
 
-import android.R.attr.path
-import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,22 +7,25 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
 import com.example.imdbsandbox.network.models.Movie
 import com.example.imdbsandbox.overview.MovieApiStatus
 import com.example.imdbsandbox.overview.PhotoGridAdapter
 
 
 @BindingAdapter("imageUrl")
-fun bindImage(imgView:ImageView, imgUrl:String?){
+fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
         Glide.with(imgView.context)
             .load(imgUri)
-            .apply(RequestOptions()
-            .placeholder(R.drawable.loading_animation)
-            .error(R.drawable.ic_broken_image))
+            .apply(
+                RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_broken_image)
+            )
             .into(imgView)
 
 
@@ -33,7 +33,7 @@ fun bindImage(imgView:ImageView, imgUrl:String?){
 }
 
 @BindingAdapter("listActionData")
-fun bindActionRecyclerView(recyclerView: RecyclerView, data:List<Movie>?){
+fun bindActionRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
     /*val genres:MutableList<String> = mutableListOf()
     data?.forEach {
         genres.addAll(it.genre)
@@ -47,29 +47,28 @@ fun bindActionRecyclerView(recyclerView: RecyclerView, data:List<Movie>?){
 }
 
 
-
 @BindingAdapter("listAnimationData")
-fun bindAnimationRecyclerView(recyclerView: RecyclerView, data: List<Movie>?){
-    val animationMovies = data?.filter {it.genre.contains("Animation")}
-    val adapter:PhotoGridAdapter? = recyclerView.adapter as PhotoGridAdapter?
+fun bindAnimationRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
+    val animationMovies = data?.filter { it.genre.contains("Animation") }
+    val adapter: PhotoGridAdapter? = recyclerView.adapter as PhotoGridAdapter?
     adapter?.submitList(animationMovies)
 }
 
 @BindingAdapter("listComedyData")
-fun bindComedyRecyclerView(recyclerView: RecyclerView, data: List<Movie>?){
-    val comedyMovies = data?.filter {it.genre.contains("Comedy")}
-    val adapter:PhotoGridAdapter? = recyclerView.adapter as PhotoGridAdapter?
+fun bindComedyRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
+    val comedyMovies = data?.filter { it.genre.contains("Comedy") }
+    val adapter: PhotoGridAdapter? = recyclerView.adapter as PhotoGridAdapter?
     adapter?.submitList(comedyMovies)
 }
 
 @BindingAdapter("movieRating")
-fun bindMovieRating(textView: TextView, movie: Movie){
+fun bindMovieRating(textView: TextView, movie: Movie) {
     val rating = movie.aggregateRating.ratingValue.toString()
     textView.text = rating
 }
 
 @BindingAdapter("movieActors")
-fun bindActors(textView: TextView, movie: Movie){
+fun bindActors(textView: TextView, movie: Movie) {
     var namesOfActor = ""
     val namesoofActor = movie.actor.map { it.name }
     namesOfActor = namesoofActor.joinToString(",")
@@ -81,16 +80,14 @@ fun bindActors(textView: TextView, movie: Movie){
 
 
 @BindingAdapter("movieApiStatus")
-fun bindStatus(statusImageView: ImageView, status:MovieApiStatus?){
+fun bindStatus(statusImageView: ImageView, status: MovieApiStatus?) {
     if (status == MovieApiStatus.LOADING) {
         statusImageView.visibility = View.VISIBLE
         statusImageView.setImageResource(R.drawable.loading_animation)
-    }
-    else if (status == MovieApiStatus.ERROR) {
+    } else if (status == MovieApiStatus.ERROR) {
         statusImageView.visibility = View.VISIBLE
         statusImageView.setImageResource(R.drawable.ic_connection_error)
-    }
-    else if (status == MovieApiStatus.DONE) {
+    } else if (status == MovieApiStatus.DONE) {
         statusImageView.visibility = View.GONE
     }
 }

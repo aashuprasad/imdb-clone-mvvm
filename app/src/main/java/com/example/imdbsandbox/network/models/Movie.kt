@@ -22,6 +22,4 @@ data class Movie(
     val name: String,
     val trailer: Trailer,
     val url: String
-) : Parcelable{
-
-}
+) : Parcelable

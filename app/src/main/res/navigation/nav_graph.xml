@@ -7,18 +7,18 @@
     <fragment
         android:id="@+id/overviewFragment"
         android:name="com.example.imdbsandbox.overview.OverviewFragment"
-        android:label="OverviewFragment" >
+        android:label="OverviewFragment">
         <action
-            android:id="@+id/action_overviewFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/actionShowDetails"
+            app:destination="@id/detailFragment"
+            app:popUpTo="@id/overviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.example.imdbsandbox.detail.DetailFragment"
-        android:label="DetailFragment" >
+        android:label="DetailFragment">
         <argument
             android:name="selectedMovie"
-            app:argType="com.example.imdbsandbox.network.models.Movie"
-            />
+            app:argType="com.example.imdbsandbox.network.models.Movie" />
     </fragment>
 </navigation>

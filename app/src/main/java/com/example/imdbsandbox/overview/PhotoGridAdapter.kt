@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.imdbsandbox.databinding.GridViewItemBinding
 import com.example.imdbsandbox.network.models.Movie
 
-open class PhotoGridAdapter(val onClickListener:OnClickListener) : ListAdapter<Movie, PhotoGridAdapter.MovieViewHolder>(DiffCallback){
+class PhotoGridAdapter(val onClickListener:OnClickListener) :
+    ListAdapter<Movie, PhotoGridAdapter.MovieViewHolder>(DiffCallback){
+
     class MovieViewHolder(private var binding:GridViewItemBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie){
@@ -24,10 +26,8 @@ open class PhotoGridAdapter(val onClickListener:OnClickListener) : ListAdapter<M
     override fun onBindViewHolder(holder: PhotoGridAdapter.MovieViewHolder, position: Int) {
         val movie = getItem(position)
         holder.itemView.setOnClickListener {
-
             onClickListener.onClick(movie)
         }
-
         holder.bind(movie)
     }
 

@@ -9,6 +9,10 @@
         <variable
             name="viewModel"
             type="com.example.imdbsandbox.detail.DetailViewModel" />
+        <variable
+            name="click"
+            type="com.example.imdbsandbox.detail.DetailOnClickListener" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -163,7 +167,15 @@
                     app:layout_constraintStart_toStartOf="@+id/tv_movieGenres"
                     app:layout_constraintTop_toBottomOf="@+id/tv_movieGenres" />
 
-
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:onClick="@{(view) -> click.onOpenIMDBCLick(view, viewModel.selectedMovie.trailer.embedUrl)}"
+                    android:text="Open IMDB"
+                    app:layout_constraintStart_toStartOf="@+id/textView16"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_moviePG" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

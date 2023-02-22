@@ -8,9 +8,6 @@ import com.example.imdbsandbox.network.models.Movie
 
 class DetailViewModel(movieDetail: Movie, app: Application) : AndroidViewModel(app) {
 
-    /**
-     * Add an encapsulated selectedProperty LiveData variable, then set its value in an init block:
-     */
     private val _selectedMovie = MutableLiveData<Movie>()
     val selectedMovie : LiveData<Movie>
         get() = _selectedMovie

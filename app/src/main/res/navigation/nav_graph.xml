@@ -21,4 +21,23 @@
             android:name="selectedMovie"
             app:argType="com.example.imdbsandbox.network.models.Movie" />
     </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.imdbsandbox.register.RegisterFragment"
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.imdbsandbox.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment" />
+        <action
+            android:id="@+id/navigatetoRegister"
+            app:destination="@id/registerFragment" />
+    </fragment>
 </navigation>

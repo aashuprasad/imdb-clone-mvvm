@@ -51,9 +51,18 @@ class OverviewFragment : Fragment() {
             }
         )
 
-        //Observe the navigateToSelectedMovie LiveData and Navigate when it isn't null
-        //After navigating, call displayMovieDetailsComplete()
-        //for another navigation event
+        binding.photoGridDrama.adapter = PhotoGridAdapter(
+            PhotoGridAdapter.OnClickListener{
+                viewModel.displayMovieDetails(it)
+            }
+        )
+
+        binding.photoGridCrime.adapter = PhotoGridAdapter(
+            PhotoGridAdapter.OnClickListener{
+                viewModel.displayMovieDetails(it)
+            }
+        )
+
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
             if(null != it){
                 //find NavController from the Fragment
@@ -62,6 +71,8 @@ class OverviewFragment : Fragment() {
                 viewModel.displayMovieDetailsComplete()
             }
         })
+
+
 
         return binding.root
     }

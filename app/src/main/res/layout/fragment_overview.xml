@@ -8,8 +8,10 @@
             name="viewModel"
             type="com.example.imdbsandbox.overview.OverviewViewModel" />
     </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.android.marsrealestate.MainActivity">
@@ -87,5 +89,50 @@
             app:layout_constraintTop_toBottomOf="@+id/genreTV3"
             tools:listitem="@layout/grid_view_item" />
 
+        <TextView
+            android:id="@+id/genreTV4"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="DRAMA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photo_grid_comedy" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photo_grid_drama"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:padding="6dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:listDramaData="@{viewModel.dmovie}"
+            app:layout_constraintTop_toBottomOf="@+id/genreTV4"
+            tools:listitem="@layout/grid_view_item" />
+
+        <TextView
+            android:id="@+id/genreTV5"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="CRIME"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/photo_grid_drama" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/photo_grid_crime"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="horizontal"
+            android:padding="6dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:listCrimeData="@{viewModel.dmovie}"
+            app:layout_constraintTop_toBottomOf="@+id/genreTV5"
+            tools:listitem="@layout/grid_view_item" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

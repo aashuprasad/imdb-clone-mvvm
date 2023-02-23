@@ -61,6 +61,20 @@ fun bindComedyRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
     adapter?.submitList(comedyMovies)
 }
 
+@BindingAdapter("listDramaData")
+fun bindDramaRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
+    val dramaMovies = data?.filter { it.genre.contains("Drama") }
+    val adapter: PhotoGridAdapter? = recyclerView.adapter as PhotoGridAdapter?
+    adapter?.submitList(dramaMovies)
+}
+
+@BindingAdapter("listCrimeData")
+fun bindCrimeRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
+    val crimeMovies = data?.filter { it.genre.contains("Crime") }
+    val adapter: PhotoGridAdapter? = recyclerView.adapter as PhotoGridAdapter?
+    adapter?.submitList(crimeMovies)
+}
+
 @BindingAdapter("movieRating")
 fun bindMovieRating(textView: TextView, movie: Movie) {
     val rating = movie.aggregateRating.ratingValue.toString()
@@ -73,9 +87,7 @@ fun bindActors(textView: TextView, movie: Movie) {
     val namesoofActor = movie.actor.map { it.name }
     namesOfActor = namesoofActor.joinToString(",")
     textView.text = namesOfActor
-    /*movie.actor.forEach {
-        namesOfActor = it.name.toCharArray().joinToString(",")
-    }*/
+
 }
 
 

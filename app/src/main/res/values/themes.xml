@@ -13,4 +13,14 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.ImdbSandbox.Fullscreen" parent="Theme.ImdbSandbox">
+        <item name="android:actionBarStyle">@style/Widget.Theme.ImdbSandbox.ActionBar.Fullscreen
+        </item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+    </style>
+
+
+
 </resources>

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-        <item
-            android:id="@+id/show_action"
-            android:title="Action" />
-        <item
-            android:id="@+id/show_drama"
-            android:title="Drama" />
-        <item
-            android:id="@+id/show_thriller"
-            android:title="Thriller" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+        <item android:id="@+id/my_favorite"
+            android:title="Favorites"
+            android:icon="@drawable/ic_baseline_favorite_24"
+            app:showAsAction="collapseActionView|ifRoom" />
 
+        <item android:id="@+id/my_search"
+            android:title="Search"
+            android:icon="@drawable/ic_baseline_search_24"
+            app:showAsAction="collapseActionView|ifRoom"
+            app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
 </menu>

@@ -18,8 +18,7 @@ class WebActivity : AppCompatActivity(){
             webView.webViewClient = object : WebViewClient() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
-                    progressBar.visibility= View.GONE
-
+                    idRLContainer.visibility= View.GONE
                     webView.visibility = View.VISIBLE
                 }
             }

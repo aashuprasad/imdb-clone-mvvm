@@ -21,8 +21,9 @@
             android:id="@+id/genreTV1"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="ACTION"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Action"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:gravity="start"/>
@@ -38,7 +39,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/genreTV1"
             app:listActionData="@{viewModel.movie}"
-            tools:listitem="@layout/grid_view_item"
+            tools:listitem="@layout/list_view_item"
             app:layout_constraintBottom_toTopOf="@id/genreTV2"/>
 
         <TextView
@@ -46,8 +47,9 @@
             android:id="@+id/genreTV2"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="ANIMATION"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Animation"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photo_grid_action" />
 
@@ -63,15 +65,16 @@
             app:layout_constraintRight_toRightOf="parent"
             app:listAnimationData="@{viewModel.bmovie}"
             app:layout_constraintTop_toBottomOf="@+id/genreTV2"
-            tools:listitem="@layout/grid_view_item" />
+            tools:listitem="@layout/list_view_item" />
 
         <TextView
 
             android:id="@+id/genreTV3"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="COMEDY"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Comedy"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photo_grid_animation" />
 
@@ -87,14 +90,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:listComedyData="@{viewModel.cmovie}"
             app:layout_constraintTop_toBottomOf="@+id/genreTV3"
-            tools:listitem="@layout/grid_view_item" />
+            tools:listitem="@layout/list_view_item" />
 
         <TextView
             android:id="@+id/genreTV4"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="DRAMA"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Drama"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photo_grid_comedy" />
 
@@ -109,14 +113,15 @@
             app:layout_constraintRight_toRightOf="parent"
             app:listDramaData="@{viewModel.dmovie}"
             app:layout_constraintTop_toBottomOf="@+id/genreTV4"
-            tools:listitem="@layout/grid_view_item" />
+            tools:listitem="@layout/list_view_item" />
 
         <TextView
             android:id="@+id/genreTV5"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:text="CRIME"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="Crime"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/photo_grid_drama" />
 
@@ -131,7 +136,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:listCrimeData="@{viewModel.dmovie}"
             app:layout_constraintTop_toBottomOf="@+id/genreTV5"
-            tools:listitem="@layout/grid_view_item" />
+            tools:listitem="@layout/list_view_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

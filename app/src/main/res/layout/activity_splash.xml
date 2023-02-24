@@ -6,11 +6,28 @@
     android:id="@+id/idRLContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".MainActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="30sp"
+        android:id="@+id/title"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/description"
+        android:text="IMDb TOP 250 MOVIES"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="18sp"
+        android:id="@+id/description"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/idIVLogo"
+        android:text="..as rated by regular IMDb voters."/>
 
-    <!--on below line we are adding an image view-->
     <ImageView
         android:id="@+id/idIVLogo"
         android:layout_width="150dp"
@@ -21,15 +38,14 @@
         android:layout_marginEnd="25dp"
         android:layout_marginBottom="25dp"
         android:src="@drawable/ic_baseline_local_movies_24"
-        app:tint="@color/white" />
+        app:tint="@color/black" />
 
-    <!--on below line we are creating progress bar-->
     <ProgressBar
         android:id="@+id/idPBLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/idIVLogo"
         android:layout_centerInParent="true"
-        android:indeterminateTint="@color/white" />
+        android:indeterminateTint="@color/light_blue_600" />
 
 </RelativeLayout>

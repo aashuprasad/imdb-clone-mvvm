@@ -45,7 +45,7 @@ class RegisterFragment : Fragment() {
 
         registerViewModel.navigateto.observe(viewLifecycleOwner, Observer { hasFinished->
             if (hasFinished == true){
-                Log.i("MYTAG","insidi observe")
+                Log.i("MYTAG","inside observe")
                 displayUsersList()
                 registerViewModel.doneNavigating()
             }

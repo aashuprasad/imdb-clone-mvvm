@@ -11,7 +11,7 @@
             type="com.example.imdbsandbox.detail.DetailViewModel" />
         <variable
             name="click"
-            type="com.example.imdbsandbox.detail.DetailOnClickListener" />
+            type="com.example.imdbsandbox.listners.DetailOnClickListener" />
 
     </data>
 

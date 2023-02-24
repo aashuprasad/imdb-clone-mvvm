@@ -5,7 +5,7 @@
     tools:context="com.example.mydatabaseapp.login.LoginFragment">
 
     <data>
-        <variable
+         <variable
             name="myViewModel"
             type="com.example.imdbsandbox.register.RegisterViewModel" />
     </data>
@@ -55,7 +55,7 @@
             android:hint="@string/FirstNameTextField"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:text="@={myRegisterViewModel.inputFirstname}"
+            android:text="@={myViewModel.inputFirstName}"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,7 +87,7 @@
             android:hint="@string/LastNameTextField"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:text="@={myLoginViewModel.inputPassword}"
+            android:text="@={myViewModel.inputLastName}"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -120,7 +120,7 @@
             android:hint="@string/UsernameTextField"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:text="@={myLoginViewModel.inputUsername}"
+            android:text="@={myViewModel.inputUsername}"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +152,7 @@
             android:hint="@string/PasswordTextFiels"
             android:importantForAutofill="no"
             android:inputType="textPersonName"
-            android:text="@={myLoginViewModel.inputPassword}"
+            android:text="@={myViewModel.inputPassword}"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -166,7 +166,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="48dp"
             android:layout_marginEnd="16dp"
-            android:onClick="@{()->myLoginViewModel.loginButton()}"
+            android:onClick="@{()->myViewModel.sumbitButton()}"
             android:text="@string/Register_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

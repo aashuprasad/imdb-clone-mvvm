@@ -1,3 +1,5 @@
+package com.example.imdbsandbox.login
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -46,8 +48,8 @@ class LoginFragment : Fragment() {
 
         loginViewModel.navigatetoRegister.observe(viewLifecycleOwner, Observer { hasFinished->
             if (hasFinished == true){
-                Log.i("MYTAG","insidi observe")
-                displayUsersList()
+                Log.i("MYTAG","inside observe")
+                navigateToRegister()
                 loginViewModel.doneNavigatingRegiter()
             }
         })
@@ -73,10 +75,10 @@ class LoginFragment : Fragment() {
             }
         })
 
-        loginViewModel.navigatetoUserDetails.observe(viewLifecycleOwner, Observer { hasFinished->
+        loginViewModel.navigatetoOverview.observe(viewLifecycleOwner, Observer { hasFinished->
             if (hasFinished == true){
-                Log.i("MYTAG","insidi observe")
-                navigateUserDetails()
+                Log.i("MYTAG","inside observe")
+                navigateToOverView()
                 loginViewModel.doneNavigatingUserDetails()
             }
         })
@@ -86,14 +88,14 @@ class LoginFragment : Fragment() {
     }
 
 
-    private fun displayUsersList() {
+    private fun navigateToRegister() {
         Log.i("MYTAG","insidisplayUsersList")
-        val action = LoginFragmentDirections.actionLoginFragmentToOverviewFragment()
+        val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
         NavHostFragment.findNavController(this).navigate(action)
 
     }
 
-    private fun navigateUserDetails() {
+    private fun navigateToOverView() {
         Log.i("MYTAG","insidisplayUsersList")
         val action = LoginFragmentDirections.actionLoginFragmentToOverviewFragment()
         NavHostFragment.findNavController(this).navigate(action)

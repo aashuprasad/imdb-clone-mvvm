@@ -1,4 +1,4 @@
-package com.example.imdbsandbox.detail
+package com.example.imdbsandbox.listners
 
 import android.view.View
 

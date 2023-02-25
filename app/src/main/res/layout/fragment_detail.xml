@@ -23,8 +23,10 @@
         <ImageView
             android:id="@+id/tv_movieImage"
             android:layout_width="0dp"
-            android:layout_height="266dp"
+            android:layout_height="500dp"
+            android:layout_margin="10dp"
             android:background="#f5c518"
+            android:foreground="@drawable/gradient_shape"
             android:scaleType="fitXY"
             app:imageUrl="@{viewModel.selectedMovie.imgSrcUrl}"
             app:layout_constraintEnd_toEndOf="parent"

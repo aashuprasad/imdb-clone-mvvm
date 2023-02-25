@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.imdbsandbox.WebActivity
@@ -18,6 +19,8 @@ class DetailFragment : Fragment(), DetailOnClickListener {
     ): View? {
         val application = requireNotNull(activity).application
         val binding = FragmentDetailBinding.inflate(inflater)
+        (activity as AppCompatActivity).supportActionBar?.hide()
+
         binding.lifecycleOwner = this
 
         val movie = DetailFragmentArgs.fromBundle(requireArguments()).selectedMovie
@@ -33,5 +36,11 @@ class DetailFragment : Fragment(), DetailOnClickListener {
         val intent = Intent(context, WebActivity::class.java)
         intent.putExtra("URL", url)
         context?.startActivity(intent)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        (activity as AppCompatActivity).supportActionBar?.show()
+
     }
 }

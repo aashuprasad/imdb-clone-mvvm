@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.imdbsandbox.WebActivity
+import com.example.imdbsandbox.activities.WebActivity
 import com.example.imdbsandbox.databinding.FragmentDetailBinding
 import com.example.imdbsandbox.listners.DetailOnClickListener
 

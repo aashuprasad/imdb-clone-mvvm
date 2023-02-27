@@ -34,13 +34,6 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 
 @BindingAdapter("listActionData")
 fun bindActionRecyclerView(recyclerView: RecyclerView, data: List<Movie>?) {
-    /*val genres:MutableList<String> = mutableListOf()
-    data?.forEach {
-        genres.addAll(it.genre)
-    }
-    val genreList = genres.distinct()
-    //data.groupBy { it.genre }*/
-    //Log.d("GENRES", genreList.toString())
     val actionMovies = data?.filter { it.genre.contains("Action") }
     val adapter: PhotoGridAdapter? = recyclerView.adapter as PhotoGridAdapter?
     adapter?.submitList(actionMovies)

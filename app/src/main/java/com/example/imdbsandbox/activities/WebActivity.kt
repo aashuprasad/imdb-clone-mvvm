@@ -1,10 +1,11 @@
-package com.example.imdbsandbox
+package com.example.imdbsandbox.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.example.imdbsandbox.R
 import kotlinx.android.synthetic.main.activity_web.*
 
 class WebActivity : AppCompatActivity(){

@@ -10,21 +10,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.imdbsandbox.databinding.ListViewItemBinding
 import com.example.imdbsandbox.network.models.Movie
 
-class PhotoGridAdapter(val onClickListener:OnClickListener) :
-    ListAdapter<Movie, PhotoGridAdapter.MovieViewHolder>(DiffCallback),Filterable{
+class PhotoGridAdapter( val onClickListener: OnClickListener, var list: ArrayList<Movie>) :
+    ListAdapter<Movie, PhotoGridAdapter.MovieViewHolder>(DiffCallback), Filterable {
 
-    class MovieViewHolder(private var binding:ListViewItemBinding):
+    class MovieViewHolder(private var binding: ListViewItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(movie: Movie){
+        fun bind(movie: Movie) {
             binding.movie = movie
             binding.executePendingBindings()
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoGridAdapter.MovieViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup, viewType: Int
+    ): PhotoGridAdapter.MovieViewHolder {
         return MovieViewHolder(ListViewItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
-
 
 
     override fun onBindViewHolder(holder: PhotoGridAdapter.MovieViewHolder, position: Int) {
@@ -35,26 +36,19 @@ class PhotoGridAdapter(val onClickListener:OnClickListener) :
         holder.bind(movie)
     }
 
-    private var list = listOf<Movie>()
-
-    fun setData(list : List<Movie>){
-        this.list = list
-        submitList(list)
-    }
 
     override fun getFilter(): Filter = customFilter
 
-    private val customFilter = object: Filter(){
+    private val customFilter = object : Filter() {
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             val filteredList = mutableListOf<Movie>()
-            if (constraint == null || constraint.isEmpty()){
+            if (constraint == null || constraint.isEmpty()) {
                 filteredList.addAll(list)
-            }
-            else{
+            } else {
                 val filterPattern = constraint.toString().toLowerCase().trim()
 
-                for(item in list){
-                    if(item.name.toLowerCase().contains(filterPattern)){
+                for (item in list) {
+                    if (item.name.toLowerCase().contains(filterPattern)) {
                         filteredList.add(item)
                     }
                 }
@@ -79,7 +73,7 @@ class PhotoGridAdapter(val onClickListener:OnClickListener) :
         }
     }
 
-    class OnClickListener(val clickListener: (movie:Movie)->Unit){
+    class OnClickListener(val clickListener: (movie: Movie) -> Unit) {
         fun onClick(movie: Movie) = clickListener(movie)
     }
 }

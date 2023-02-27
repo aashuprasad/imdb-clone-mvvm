@@ -1,9 +1,8 @@
-package com.example.imdbsandbox
+package com.example.imdbsandbox.activities
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import androidx.appcompat.app.AppCompatActivity
+import com.example.imdbsandbox.R
 
 
 class MainActivity : AppCompatActivity() {

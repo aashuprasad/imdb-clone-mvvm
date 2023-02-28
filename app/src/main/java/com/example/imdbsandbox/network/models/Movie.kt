@@ -21,5 +21,6 @@ data class Movie(
     val keywords: String,
     val name: String,
     val trailer: Trailer,
-    val url: String
+    val url: String,
+    val isFav:Boolean
 ) : Parcelable

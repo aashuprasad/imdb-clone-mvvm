@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.imdbsandbox.databinding.ListViewItemBinding
 import com.example.imdbsandbox.network.models.Movie
 
-class PhotoGridAdapter( val onClickListener: OnClickListener, var list: ArrayList<Movie>) :
+class PhotoGridAdapter(val onClickListener: OnClickListener, var list: ArrayList<Movie>) :
     ListAdapter<Movie, PhotoGridAdapter.MovieViewHolder>(DiffCallback), Filterable {
 
     class MovieViewHolder(private var binding: ListViewItemBinding) :

@@ -2,6 +2,7 @@ package com.example.imdbsandbox.overview
 
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -17,7 +18,11 @@ class OverviewFragment : Fragment() {
     private val viewModel: OverviewViewModel by lazy {
         ViewModelProvider(this).get(OverviewViewModel::class.java)
     }
-    private val movielist: ArrayList<Movie> = ArrayList()
+    private val actionMovieList: ArrayList<Movie> = ArrayList()
+    private var animationMovieList: ArrayList<Movie> = ArrayList()
+    private var comedyMovieList: ArrayList<Movie> = ArrayList()
+    private var dramaMovieList: ArrayList<Movie> = ArrayList()
+    private var crimeMovieList: ArrayList<Movie> = ArrayList()
     private lateinit var binding: FragmentOverviewBinding
 
     override fun onCreateView(
@@ -31,27 +36,27 @@ class OverviewFragment : Fragment() {
         binding.photoGridAction.adapter = PhotoGridAdapter(
             PhotoGridAdapter.OnClickListener {
                 viewModel.displayMovieDetails(it)
-            }, movielist
+            }, actionMovieList
         )
         binding.photoGridAnimation.adapter = PhotoGridAdapter(
             PhotoGridAdapter.OnClickListener {
                 viewModel.displayMovieDetails(it)
-            }, movielist
+            }, animationMovieList
         )
         binding.photoGridComedy.adapter = PhotoGridAdapter(
             PhotoGridAdapter.OnClickListener {
                 viewModel.displayMovieDetails(it)
-            }, movielist
+            }, comedyMovieList
         )
         binding.photoGridDrama.adapter = PhotoGridAdapter(
             PhotoGridAdapter.OnClickListener {
                 viewModel.displayMovieDetails(it)
-            }, movielist
+            }, dramaMovieList
         )
         binding.photoGridCrime.adapter = PhotoGridAdapter(
             PhotoGridAdapter.OnClickListener {
                 viewModel.displayMovieDetails(it)
-            }, movielist
+            }, crimeMovieList
         )
         viewModel.navigateToSelectedMovie.observe(viewLifecycleOwner, Observer {
             if (null != it) {
@@ -61,9 +66,40 @@ class OverviewFragment : Fragment() {
         })
 
         viewModel.movie.observe(viewLifecycleOwner) {
-            movielist.addAll(it)
+            for (item in it) {
+                if (item.genre.contains("Action")) {
+                    actionMovieList.add(item)
+                }
+            }
         }
-
+        viewModel.movie.observe(viewLifecycleOwner) {
+            for (item in it) {
+                if (item.genre.contains("Animation")) {
+                    animationMovieList.add(item)
+                }
+            }
+        }
+        viewModel.movie.observe(viewLifecycleOwner) {
+            for (item in it) {
+                if (item.genre.contains("Comedy")) {
+                    comedyMovieList.add(item)
+                }
+            }
+        }
+        viewModel.movie.observe(viewLifecycleOwner) {
+            for (item in it) {
+                if (item.genre.contains("Drama")) {
+                    dramaMovieList.add(item)
+                }
+            }
+        }
+        viewModel.movie.observe(viewLifecycleOwner) {
+            for (item in it) {
+                if (item.genre.contains("Crime")) {
+                    crimeMovieList.add(item)
+                }
+            }
+        }
 
         setHasOptionsMenu(true)
         return binding.root

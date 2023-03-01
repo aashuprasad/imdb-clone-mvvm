@@ -27,8 +27,6 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
                     .error(R.drawable.ic_broken_image)
             )
             .into(imgView)
-
-
     }
 }
 

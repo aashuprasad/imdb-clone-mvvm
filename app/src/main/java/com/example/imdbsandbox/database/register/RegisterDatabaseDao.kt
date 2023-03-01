@@ -1,10 +1,7 @@
-package com.example.imdbsandbox.database
+package com.example.imdbsandbox.database.register
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface RegisterDatabaseDao {
@@ -17,5 +14,11 @@ interface RegisterDatabaseDao {
 
     @Query("SELECT * FROM Register_users_table WHERE user_name LIKE :userName")
     suspend fun getUsername(userName: String): RegisterEntity?
+
+    @Update
+    fun update(user: RegisterEntity)
+
+    @Delete
+    fun delete(user: RegisterEntity)
 
 }

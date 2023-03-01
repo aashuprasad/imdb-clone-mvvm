@@ -12,12 +12,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.example.imdbsandbox.R
-import com.example.imdbsandbox.database.RegisterDatabase
-import com.example.imdbsandbox.database.RegisterRepository
+import com.example.imdbsandbox.database.register.RegisterDatabase
+import com.example.imdbsandbox.database.register.RegisterRepository
 import com.example.imdbsandbox.databinding.FragmentLoginBinding
-import com.example.imdbsandbox.login.LoginFragmentDirections
-import com.example.imdbsandbox.login.LoginViewModel
-import com.example.imdbsandbox.login.LoginViewModelFactory
 
 class LoginFragment : Fragment() {
 

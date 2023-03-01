@@ -12,8 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import com.example.imdbsandbox.R
-import com.example.imdbsandbox.database.RegisterDatabase
-import com.example.imdbsandbox.database.RegisterRepository
+import com.example.imdbsandbox.database.register.RegisterDatabase
+import com.example.imdbsandbox.database.register.RegisterRepository
 import com.example.imdbsandbox.databinding.FragmentRegisterBinding
 
 

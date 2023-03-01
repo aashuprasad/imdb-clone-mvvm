@@ -8,8 +8,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.imdbsandbox.database.RegisterEntity
-import com.example.imdbsandbox.database.RegisterRepository
+import com.example.imdbsandbox.database.register.RegisterEntity
+import com.example.imdbsandbox.database.register.RegisterRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

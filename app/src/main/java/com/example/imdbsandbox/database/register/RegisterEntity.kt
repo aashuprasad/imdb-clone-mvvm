@@ -1,8 +1,9 @@
-package com.example.imdbsandbox.database
+package com.example.imdbsandbox.database.register
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.imdbsandbox.network.models.Movie
 
 @Entity(tableName = "Register_users_table")
 data class RegisterEntity (
@@ -19,7 +20,9 @@ data class RegisterEntity (
     var userName: String,
 
     @ColumnInfo(name = "password_text")
-    var password: String
+    var password: String,
+
+
 
 )
 

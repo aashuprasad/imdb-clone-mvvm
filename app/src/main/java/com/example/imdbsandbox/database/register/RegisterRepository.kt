@@ -1,4 +1,4 @@
-package com.example.imdbsandbox.database
+package com.example.imdbsandbox.database.register
 
 class RegisterRepository(private val dao: RegisterDatabaseDao) {
 
@@ -8,7 +8,7 @@ class RegisterRepository(private val dao: RegisterDatabaseDao) {
         return dao.insert(user)
     }
 
-    suspend fun getUserName(userName: String):RegisterEntity?{
+    suspend fun getUserName(userName: String): RegisterEntity?{
         return dao.getUsername(userName)
     }
 }

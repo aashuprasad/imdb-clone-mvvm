@@ -1,11 +1,16 @@
 package com.example.imdbsandbox.network.models
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
+@Entity
 @Parcelize
 data class Movie(
+    @PrimaryKey(autoGenerate = true)
+    var movieId : Int,
     @SerializedName("@context")val context: String,
     @SerializedName("@type")val type: String,
     val actor: List<Actor>,
@@ -22,5 +27,5 @@ data class Movie(
     val name: String,
     val trailer: Trailer,
     val url: String,
-    val isFav:Boolean
+    var isFavorite: Boolean = false
 ) : Parcelable

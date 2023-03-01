@@ -1,4 +1,4 @@
-package com.example.imdbsandbox.database
+package com.example.imdbsandbox.database.register
 
 import android.content.Context
 import androidx.room.Database

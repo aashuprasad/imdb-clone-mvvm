@@ -75,8 +75,8 @@ fun bindMovieRating(textView: TextView, movie: Movie) {
 @BindingAdapter("movieActors")
 fun bindActors(textView: TextView, movie: Movie) {
     var namesOfActor = ""
-    val namesoofActor = movie.actor.map { it.name }
-    namesOfActor = namesoofActor.joinToString(",")
+    val namesoofActor = movie.actor?.map { it.name }
+    namesOfActor = namesoofActor!!.joinToString(",")
     textView.text = namesOfActor
 
 }

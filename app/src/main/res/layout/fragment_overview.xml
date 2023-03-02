@@ -8,7 +8,12 @@
             name="viewModel"
             type="com.example.imdbsandbox.overview.OverviewViewModel" />
     </data>
-    <ScrollView
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +21,9 @@
         android:layout_height="match_parent"
         tools:context="com.example.android.marsrealestate.MainActivity">
 
-        <TextView
+
+
+            <TextView
 
             android:id="@+id/genreTV1"
             android:layout_width="wrap_content"
@@ -140,4 +147,12 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/refresh_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_baseline_refresh_24" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -42,7 +42,7 @@ class DetailFragment : Fragment(), DetailOnClickListener {
             if (isChecked) {
                 movie.isFavorite = !movie.isFavorite
                 GlobalScope.launch {
-                    movieDao.update(movie)
+                    movieDao.insert(movie)
                 }
                 Toast.makeText(requireContext(), "Item added to Favourite", Toast.LENGTH_SHORT)
                     .show()

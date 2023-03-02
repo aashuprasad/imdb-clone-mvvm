@@ -7,7 +7,13 @@ import androidx.room.*
 import com.example.imdbsandbox.network.models.Movie
 
 @Database(entities = [Movie::class], version = 1)
-@TypeConverters(MyDataClassTypeConverter::class)
+@TypeConverters(MyDataClassTypeConverter::class,
+    MyDataClass2TypeConverter::class,
+    MyDataClass3TypeConverter::class,
+    MyDataClass4TypeConverter::class,
+    MyDataClass6TypeConverter::class,
+    MyDataClass5TypeConverter::class,
+    MyDataClass7TypeConverter::class)
 abstract class MovieDatabase: RoomDatabase(){
 
     abstract fun movieDao(): MovieDao
@@ -44,6 +50,6 @@ interface MovieDao {
     @Delete
     suspend fun delete(movie: Movie)
 
-    @Query("SELECT * FROM movie WHERE isFavorite = 1 ORDER BY title")
-    suspend fun getFavoriteMovies(): LiveData<List<Movie>>
+    @Query("SELECT * FROM movie WHERE isFavorite = 1 ORDER BY name")
+    suspend fun getFavoriteMovies(): List<Movie>
 }

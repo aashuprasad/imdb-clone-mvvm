@@ -5,13 +5,16 @@ import android.text.InputType
 import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.imdbsandbox.R
 import com.example.imdbsandbox.databinding.FragmentOverviewBinding
+import com.example.imdbsandbox.favourite.FavFragment
 import com.example.imdbsandbox.network.models.Movie
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class OverviewFragment : Fragment() {
 
@@ -65,6 +68,8 @@ class OverviewFragment : Fragment() {
             }
         })
 
+
+
         viewModel.movie.observe(viewLifecycleOwner) {
             for (item in it) {
                 if (item.genre.contains("Action")) {
@@ -101,8 +106,36 @@ class OverviewFragment : Fragment() {
             }
         }
 
+        val refreshButton = binding.refreshButton
+        val params = refreshButton.layoutParams as CoordinatorLayout.LayoutParams
+        params.behavior = FloatingActionButton.Behavior()
+
+        refreshButton.layoutParams = params
+
+
+        binding.refreshButton.setOnClickListener {
+            viewModel.getMovieDetails()
+        }
+
         setHasOptionsMenu(true)
         return binding.root
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem)= when(item.itemId) {
+        R.id.my_favorite -> {
+            // User chose the "Favorite" action, mark the current item
+            // as a favorite...
+            val fragment = FavFragment()
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.favMovies, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+            true
+        }
+
+        else -> {
+            super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

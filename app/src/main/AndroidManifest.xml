@@ -10,6 +10,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ic_baseline_local_movies_24"
         android:label="@string/app_name"
+        android:enableOnBackInvokedCallback="true"
         android:roundIcon="@drawable/ic_baseline_local_movies_24"
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialComponents.DayNight"

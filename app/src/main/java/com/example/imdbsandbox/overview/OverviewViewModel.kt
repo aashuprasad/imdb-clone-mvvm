@@ -46,7 +46,7 @@ class OverviewViewModel: ViewModel() {
         getMovieDetails()
     }
 
-    private fun getMovieDetails() {
+    fun getMovieDetails() {
         viewModelScope.launch {
             try{
                 _status.value = MovieApiStatus.LOADING

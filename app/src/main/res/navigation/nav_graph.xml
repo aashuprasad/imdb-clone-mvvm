@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/overviewFragment">
 
     <fragment
         android:id="@+id/overviewFragment"
@@ -12,6 +12,9 @@
             android:id="@+id/actionShowDetails"
             app:destination="@id/detailFragment"
             app:popUpTo="@id/overviewFragment" />
+        <action
+            android:id="@+id/action_overviewFragment_to_favFragment"
+            app:destination="@id/favFragment" />
 
     </fragment>
     <fragment
@@ -43,4 +46,8 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favFragment"
+        android:name="com.example.imdbsandbox.favourite.FavFragment"
+        android:label="FavFragment" />
 </navigation>

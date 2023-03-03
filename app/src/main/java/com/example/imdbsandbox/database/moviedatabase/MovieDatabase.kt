@@ -49,7 +49,7 @@ interface MovieDao {
 
     @Delete
     suspend fun delete(movie: Movie)
-
-    @Query("SELECT * FROM movie WHERE isFavorite = 1 ORDER BY name")
+    //WHERE isFavorite = 1 ORDER BY name
+    @Query("SELECT * FROM movie")
     suspend fun getFavoriteMovies(): List<Movie>
 }

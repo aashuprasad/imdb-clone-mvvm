@@ -6,29 +6,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
 import com.example.imdbsandbox.R
+import com.example.imdbsandbox.database.moviedatabase.MovieDatabase
 import com.example.imdbsandbox.network.models.Movie
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
 class FavFragment : Fragment() {
 
-    lateinit var abc : List<Movie>
+    lateinit var allMovies : List<Movie>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val viewModel = ViewModelProvider(this).get(FavViewModel::class.java)
+        val movieDatabase = MovieDatabase.getInstance(requireContext())
+        val movieDao = movieDatabase.movieDao()
+        val viewModel : FavViewModel = ViewModelProvider(this, FavViewModelFactory(movieDao))[FavViewModel::class.java]
         lifecycleScope.launch{
-            abc = viewModel.getAllData()
-        }
+            allMovies = viewModel.getAllData()
+            delay(1000)
+            val recyclerView = view?.findViewById<RecyclerView>(R.id.favMovies)
+            recyclerView?.adapter = FavListAdapter(allMovies)
 
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.favMovies)
-        recyclerView?.adapter = FavListAdapter(abc)
+        }
         return inflater.inflate(R.layout.fragment_fav, container, false)
     }
 

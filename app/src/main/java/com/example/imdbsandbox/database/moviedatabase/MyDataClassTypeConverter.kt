@@ -66,7 +66,7 @@ object MyDataClass3TypeConverter {
 object MyDataClass4TypeConverter {
     private val gson = Gson()
     @TypeConverter
-    fun fromActorList(countryLang: List<Creator?>?): String? {
+    fun fromCreatorList(countryLang: List<Creator?>?): String? {
         if (countryLang == null) {
             return null
         }
@@ -76,7 +76,7 @@ object MyDataClass4TypeConverter {
     }
 
     @TypeConverter
-    fun toActorList(countryLangString: String?): List<Creator>? {
+    fun toCreatorList(countryLangString: String?): List<Creator>? {
         if (countryLangString == null) {
             return null
         }
@@ -89,7 +89,7 @@ object MyDataClass4TypeConverter {
 object MyDataClass5TypeConverter {
     private val gson = Gson()
     @TypeConverter
-    fun fromActorList(countryLang: List<Director?>?): String? {
+    fun fromDirectorList(countryLang: List<Director?>?): String? {
         if (countryLang == null) {
             return null
         }
@@ -99,7 +99,7 @@ object MyDataClass5TypeConverter {
     }
 
     @TypeConverter
-    fun toActorList(countryLangString: String?): List<Director>? {
+    fun toDirectorList(countryLangString: String?): List<Director>? {
         if (countryLangString == null) {
             return null
         }
@@ -114,13 +114,13 @@ object MyDataClass6TypeConverter {
 
     @TypeConverter
     @JvmStatic
-    fun fromString(value: String): Trailer {
+    fun fromTrailerString(value: String): Trailer {
         return gson.fromJson(value, Trailer::class.java)
     }
 
     @TypeConverter
     @JvmStatic
-    fun toString(value: Trailer): String {
+    fun toTrailerString(value: Trailer): String {
         return gson.toJson(value)
     }
 }
@@ -128,7 +128,7 @@ object MyDataClass6TypeConverter {
 object MyDataClass7TypeConverter {
     private val gson = Gson()
     @TypeConverter
-    fun fromActorList(countryLang: List<String?>?): String? {
+    fun fromStringList(countryLang: List<String?>?): String? {
         if (countryLang == null) {
             return null
         }
@@ -138,12 +138,12 @@ object MyDataClass7TypeConverter {
     }
 
     @TypeConverter
-    fun toActorList(countryLangString: String?): List<String>? {
+    fun toStringList(countryLangString: String?): List<String>? {
         if (countryLangString == null) {
             return null
         }
         val gson = Gson()
-        val type = object : TypeToken<List<Director?>?>() {}.type
+        val type = object : TypeToken<List<String?>?>() {}.type
         return gson.fromJson<List<String>>(countryLangString, type)
     }
 }

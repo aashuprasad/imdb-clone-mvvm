@@ -2,19 +2,20 @@ package com.example.imdbsandbox.overview
 
 import android.os.Bundle
 import android.text.InputType
-import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.imdbsandbox.R
 import com.example.imdbsandbox.databinding.FragmentOverviewBinding
-import com.example.imdbsandbox.favourite.FavFragment
 import com.example.imdbsandbox.network.models.Movie
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 
 class OverviewFragment : Fragment() {
 
@@ -121,21 +122,22 @@ class OverviewFragment : Fragment() {
         return binding.root
     }
 
-    override fun onOptionsItemSelected(item: MenuItem)= when(item.itemId) {
-        R.id.my_favorite -> {
-            // User chose the "Favorite" action, mark the current item
-            // as a favorite...
-            val fragment = FavFragment()
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.favMovies, fragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
-            true
-        }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.my_favorite -> {
+                val navController: NavController = Navigation.findNavController(
+                    requireActivity(),
+                    R.id.nav_host_fragment
+                )
+                navController.navigate(R.id.action_overviewFragment_to_favFragment)
 
-        else -> {
-            super.onOptionsItemSelected(item)
+            }
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
